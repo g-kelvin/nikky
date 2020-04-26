@@ -7,6 +7,7 @@
 1. Vars and Inits
 2. Set Header
 3. Init Menu
+4. Init Progress Bars
 
 
 ******************************/
@@ -20,6 +21,11 @@ $(document).ready(function()
 	1. Vars and Inits
 
 	*/
+
+	var header = $('.header');
+	var hamburgerBar = $('.hamburger_bar');
+	var hamburger = $('.hamburger');
+	var ctrl = new ScrollMagic.Controller();
 
 	setHeader();
 
@@ -39,6 +45,7 @@ $(document).ready(function()
 	});
 
 	initMenu();
+	initProgressBars();
 
 	/* 
 
@@ -48,15 +55,15 @@ $(document).ready(function()
 
 	function setHeader()
 	{
-		var header = $('.fixed_header');
-
-		if($(window).scrollTop() > 180)
+		if($(window).scrollTop() > 91)
 		{
 			header.addClass('scrolled');
+			hamburgerBar.addClass('scrolled');
 		}
 		else
 		{
 			header.removeClass('scrolled');
+			hamburgerBar.removeClass('scrolled');
 		}
 	}
 
@@ -68,69 +75,76 @@ $(document).ready(function()
 
 	function initMenu()
 	{
-		if($('.menu').length && $('.hamburger').length)
+		if($('.menu').length)
 		{
 			var menu = $('.menu');
-			var hamburger = $('.hamburger');
-			var close = $('.menu_close');
-			var door = $('.menu_door');
-			var menuContent = $('.menu_content');
-			var items = $('.menu_nav ul li');
-
 			hamburger.on('click', function()
 			{
-				// menu.toggleClass('active');
-
-				// Open menu
-				TweenMax.to(menu, 0,
-				{
-					visibility:'visible',
-					opacity:1
-				});
-				TweenMax.to(door, 1,
-				{
-					width:'50%',
-					ease: Power3.easeOut
-				});
-				TweenMax.to(menuContent, 0.4,
-				{
-					opacity:1,
-					delay:0.4
-				});
-				TweenMax.staggerFromTo(items,1,
-				{
-					y:10,
-					opacity:0,
-					ease:Power2.easeInOut
-				},
-				{
-					y:0,
-					opacity:1,
-					delay:0.2
-				},0.08)
-			});
-
-			close.on('click', function()
-			{
-				// menu.toggleClass('active');
-				TweenMax.to(menuContent, 0.4,
-				{
-					opacity:0
-				});
-				TweenMax.to(door, 1,
-				{
-					width:0,
-					ease: Power3.easeOut,
-					delay:0.6
-				});
-				TweenMax.to(menu, 0,
-				{
-					visibility:'hidden',
-					opacity:0,
-					delay:1.5
-				});
+				hamburger.toggleClass('active');
+				menu.toggleClass('active');
 			});
 		}
+	}
+
+	/* 
+
+	4. Init Progress Bars
+
+	*/
+
+	function initProgressBars()
+	{
+		if($('.skill_bars').length)
+		{
+			var eles = $('.skill_bars');
+
+			eles.each(function(i)
+			{
+				var ele = $(this);
+	    		var elePerc = ele.data('perc');
+	    		var eleName = '#'+ele.data('name');
+
+	    		var statsScene = new ScrollMagic.Scene({
+		    		triggerElement: this,
+		    		triggerHook: 'onEnter',
+		    		reverse:false
+		    	})
+		    	.on('start', function()
+		    	{
+		    		var pbar = new ProgressBar.Line(eleName, 
+		    		{
+		    			strokeWidth: 4,
+						easing: 'easeInOut',
+						duration: 1400,
+						color: '#ff9711',
+						trailColor: 'transparent',
+						trailWidth: 1,
+						svgStyle: {width: '100%', height: '100%'},
+						text: {
+							style: {
+								// Text color.
+								// Default: same as stroke color (options.color)
+								color: '#717a85',
+								position: 'absolute',
+								right: '0',
+								top: '-20px',
+								padding: 0,
+								margin: 0,
+								transform: null
+								},
+								autoStyleContainer: false
+						},
+						from: {color: '#ff9711'},
+						to: {color: '#ff9711'},
+						step: function(state, bar) {
+						bar.setText(Math.round(bar.value() * 100) + ' %');
+						}
+		    		});
+		    		pbar.animate(elePerc);
+		    	})
+		    	.addTo(ctrl);
+			});
+		}	
 	}
 
 });

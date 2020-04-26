@@ -27,11 +27,7 @@
 
 @media only screen and (max-width: 1600px)
 {
-	.contact_content
-	{
-		padding-left: 90px;
-		padding-right: 0;
-	}
+	
 }
 
 /************
@@ -40,15 +36,7 @@
 
 @media only screen and (max-width: 1440px)
 {
-	.header
-	{
-		left: 60px;
-		width: calc(100% - 120px);
-	}
-	.main_nav ul li:not(:last-of-type)
-	{
-		margin-right: 48px;
-	}
+	
 }
 
 /************
@@ -75,53 +63,21 @@
 
 @media only screen and (max-width: 1199px)
 {
+	.phone
+	{
+		display: none !important;
+	}
+	.menu .phone
+	{
+		display: block !important;
+	}
 	.logo
 	{
-		left: 30px;
+		left: auto;
 	}
-	.header_social
+	.main_nav
 	{
-		right: 30px;
-	}
-	.main_nav ul li:not(:last-of-type)
-	{
-		margin-right: 32px;
-	}
-	.header_social ul li:not(:last-of-type)
-	{
-		margin-right: 18px;
-	}
-	.custom_container_wrap > .container
-	{
-		max-width: 960px;
-		padding-left: 15px;
-		padding-right: 15px;
-	}
-	.custom_container_wrap > .container > .row
-	{
-		margin-left: -15px;
-		margin-right: -15px;
-	}
-	.custom_container_wrap > .container > .row > div[class^='col']
-	{
-		padding-left: 15px;
-		padding-right: 15px;
-	}
-	.contact_info_list
-	{
-		margin-top: 41px;
-	}
-	.contact_content
-	{
-		padding-left: 0;
-	}
-	.contact_map_container
-	{
-		padding-left: 0;
-	}
-	.contact
-	{
-		padding-bottom: 100px;
+		margin-left: 90px;
 	}
 }
 
@@ -149,33 +105,25 @@
 
 @media only screen and (max-width: 991px)
 {
-	.main_nav
-	{
-		display: none;
-	}
-	.header_social
-	{
-		display: none;
-	}
-	.home_title h1
-	{
-		font-size: 56px;
-	}
-	.header_wrap
-	{
-		padding-right: 25px;
-	}
 	.hamburger
 	{
 		display: block;
 	}
-	.custom_container_wrap > .container
+	.hamburger_bar
 	{
-		max-width: 720px;
+		display: block;
 	}
-	.footer_col:not(:last-child)
+	.main_nav
 	{
-		margin-bottom: 60px;
+		display: none;
+	}
+	.contact_col
+	{
+		margin-top: 100px;
+	}
+	.footer_nav ul li:not(:last-of-type)
+	{
+		margin-right: 40px;
 	}
 }
 
@@ -212,15 +160,19 @@
 
 @media only screen and (max-width: 767px)
 {
-	.header
+	.hamburger_bar
 	{
-		top: 30px;
-		left: 30px;
-		width: calc(100% - 60px);
+		right: calc((100vw - 510px) / 2 - 15px);
 	}
-	.custom_container_wrap > .container
+	.home_title
 	{
-		max-width: 540px;
+		font-size: 72px;
+		margin-top: -4px;
+	}
+	.home_subtitle
+	{
+		font-size: 14px;
+		margin-top: -4px;
 	}
 }
 
@@ -230,43 +182,52 @@
 
 @media only screen and (max-width: 575px)
 {
-	h1
+	p
 	{
-		font-size: 36px;
-	}
-	.header
-	{
-		top: 15px;
-		left: 15px;
-		width: calc(100% - 30px);
+		font-size: 13px;
 	}
 	.home
 	{
-		
+		height: 70vh;
 	}
-	.header_wrap
+	.header_content,
+	.header.scrolled .header_content
 	{
-		padding-right: 15px;
+		height: 65px;
 	}
-	.home_title h1
+	.hamburger_bar
+	{
+		right: 0px;
+		height: 65px;
+	}
+	.home_title
 	{
 		font-size: 48px;
 	}
-	.button,
-	.button_2
+	.section_title
 	{
-		width: 157px;
-		height: 56px;
+		font-size: 48px;
 	}
-	.button a,
-	.button_2 a
+	.text_highlight
 	{
-		font-size: 12px;
-		line-height: 52px;
+		font-size: 15px;
 	}
-	.custom_container_wrap > .container
+	.google_map
 	{
-		max-width: 100%;
+		height: 350px;
+	}
+	.footer_content
+	{
+		padding-bottom: 40px;
+	}
+	.footer_nav ul li:not(:last-of-type)
+	{
+		margin-right: 0px;
+		margin-bottom: 10px;
+	}
+	.footer_image
+	{
+		opacity: 0.5;
 	}
 }
 

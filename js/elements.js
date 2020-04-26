@@ -25,6 +25,9 @@ $(document).ready(function()
 
 	*/
 
+	var header = $('.header');
+	var hamburgerBar = $('.hamburger_bar');
+	var hamburger = $('.hamburger');
 	var ctrl = new ScrollMagic.Controller();
 
 	setHeader();
@@ -58,15 +61,15 @@ $(document).ready(function()
 
 	function setHeader()
 	{
-		var header = $('.fixed_header');
-
-		if($(window).scrollTop() > 180)
+		if($(window).scrollTop() > 91)
 		{
 			header.addClass('scrolled');
+			hamburgerBar.addClass('scrolled');
 		}
 		else
 		{
 			header.removeClass('scrolled');
+			hamburgerBar.removeClass('scrolled');
 		}
 	}
 
@@ -78,67 +81,13 @@ $(document).ready(function()
 
 	function initMenu()
 	{
-		if($('.menu').length && $('.hamburger').length)
+		if($('.menu').length)
 		{
 			var menu = $('.menu');
-			var hamburger = $('.hamburger');
-			var close = $('.menu_close');
-			var door = $('.menu_door');
-			var menuContent = $('.menu_content');
-			var items = $('.menu_nav ul li');
-
 			hamburger.on('click', function()
 			{
-				// menu.toggleClass('active');
-
-				// Open menu
-				TweenMax.to(menu, 0,
-				{
-					visibility:'visible',
-					opacity:1
-				});
-				TweenMax.to(door, 1,
-				{
-					width:'50%',
-					ease: Power3.easeOut
-				});
-				TweenMax.to(menuContent, 0.4,
-				{
-					opacity:1,
-					delay:0.4
-				});
-				TweenMax.staggerFromTo(items,1,
-				{
-					y:10,
-					opacity:0,
-					ease:Power2.easeInOut
-				},
-				{
-					y:0,
-					opacity:1,
-					delay:0.2
-				},0.08)
-			});
-
-			close.on('click', function()
-			{
-				// menu.toggleClass('active');
-				TweenMax.to(menuContent, 0.4,
-				{
-					opacity:0
-				});
-				TweenMax.to(door, 1,
-				{
-					width:0,
-					ease: Power3.easeOut,
-					delay:0.6
-				});
-				TweenMax.to(menu, 0,
-				{
-					visibility:'hidden',
-					opacity:0,
-					delay:1.5
-				});
+				hamburger.toggleClass('active');
+				menu.toggleClass('active');
 			});
 		}
 	}
@@ -260,10 +209,10 @@ $(document).ready(function()
 		    	{
 		    		var bar = new ProgressBar.Circle(loader,
 					{
-						color: '#7360ff',
+						color: '#ff9711',
 						// This has to be the same size as the maximum width to
 						// prevent clipping
-						strokeWidth: 3,
+						strokeWidth: 2.5,
 						trailWidth: 0,
 						trailColor: 'transparent',
 						easing: 'easeInOut',
@@ -272,8 +221,8 @@ $(document).ready(function()
 						{
 							autoStyleContainer: false
 						},
-						from:{ color: '#ff0e3b', width: 3 },
-						to: { color: '#ff0e3b', width: 3 },
+						from:{ color: '#ff9711', width: 2.5 },
+						to: { color: '#ff9711', width: 2.5 },
 						// Set default step function for all animate calls
 						step: function(state, circle)
 						{
@@ -281,7 +230,6 @@ $(document).ready(function()
 							circle.path.setAttribute('stroke-width', state.width);
 
 							var value = Math.round(circle.value() * 100);
-
 							if (value === 0)
 							{
 								circle.setText('0%');
@@ -292,6 +240,8 @@ $(document).ready(function()
 							}
 						}
 					});
+					bar.text.style.fontSize = '20px';
+					bar.text.style.color = "#636363";
 
 
 					bar.animate(endValue);  // Number from 0.0 to 1.0
